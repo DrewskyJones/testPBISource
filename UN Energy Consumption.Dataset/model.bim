@@ -1,0 +1,566 @@
+{
+  "compatibilityLevel": 1550,
+  "model": {
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.118.621.0 (23.06)"
+      },
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"DataSeries\",\"Values\"]"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "en-US",
+    "cultures": [
+      {
+        "name": "en-US",
+        "linguisticMetadata": {
+          "content": {
+            "DynamicImprovement": "HighConfidence",
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "relationships": [
+      {
+        "name": "0e2dc604-87b7-464e-98df-60de89f82a7a",
+        "crossFilteringBehavior": "bothDirections",
+        "fromColumn": "DataSeriesId",
+        "fromTable": "Values",
+        "toColumn": "Id",
+        "toTable": "DataSeries"
+      }
+    ],
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "DataSeries",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "DataSetId",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5da1b893-a8cf-457e-bc7f-21ce1aad87fb",
+            "sourceColumn": "DataSetId",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7c0d08ba-279e-45dd-9cee-d1d06b8c267c",
+            "sourceColumn": "Id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5be8d2a6-d96a-4810-b7a5-db22787e2d3b",
+            "sourceColumn": "Name",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "c4825e8c-c965-40f6-b600-019cb418d99b",
+        "partitions": [
+          {
+            "name": "DataSeries-19dfefb8-213f-4e5a-8cb3-0d6b68e3b4c1",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Marketplace.Subscriptions(),",
+                "    #\"https://api.datamarket.azure.com/Data.ashx/UnitedNations/Energy/v1/\" = Source{[ServiceUrl=\"https://api.datamarket.azure.com/Data.ashx/UnitedNations/Energy/v1/\"]}[Feeds],",
+                "    DataSeries_table = #\"https://api.datamarket.azure.com/Data.ashx/UnitedNations/Energy/v1/\"{[Name=\"DataSeries\",Signature=\"table\"]}[Data]",
+                "in",
+                "    DataSeries_table"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DateTableTemplate_5df08633-c49c-4c7b-b077-4327655e08c6",
+        "annotations": [
+          {
+            "name": "__PBI_TemplateDateTable",
+            "value": "true"
+          },
+          {
+            "name": "DefaultItem",
+            "value": "DateHierarchy"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "1ada3503-d069-4938-9439-082994518795",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              },
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "ab2f9cd9-15ac-41e2-b585-8f7e347febbc",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              },
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "dc904b98-e19c-467b-97b3-f5a9fd508739",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              },
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "b99f4436-46f5-4ef3-b07e-13d9d7b31fe0",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              },
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "d8786363-d746-4d87-b581-f5fe7472cc4a",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              },
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "1e8b53dc-b238-4441-a181-6148db948316",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              },
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "lineageTag": "7dc9a973-3801-434a-a750-8640e2951923",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "0931c9ed-a874-4905-9c62-7616cb4b9985",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "e503598d-4974-4cd9-a7d4-373a99607b8b",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "640628f3-d16e-412b-b558-b667f366bfa6",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "7917db8d-077b-47a2-a4de-91a963926716",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "8b241688-8c0a-4f6a-8050-568d89fc3826"
+          }
+        ],
+        "isHidden": true,
+        "isPrivate": true,
+        "lineageTag": "aaea9633-bf88-4d29-ad38-ccbb67908740",
+        "partitions": [
+          {
+            "name": "DateTableTemplate_5df08633-c49c-4c7b-b077-4327655e08c6-27441b73-3dd1-481f-af9f-a95d1d4f6772",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Values",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Column",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "find(\" \",'Values'[CommodityTransactionName],find(\" - \",'Values'[CommodityTransactionName],1,0)+2)",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "f54f3e7e-fdd1-4473-8f47-c5b98bcd6d24",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "CommodityTransactionId",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "697ac205-d310-4af0-8488-81ddf92df5c1",
+            "sourceColumn": "CommodityTransactionId",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CommodityTransactionName",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0e30b322-827c-4e62-a8e5-9682df8c65f8",
+            "sourceColumn": "CommodityTransactionName",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "CountryId",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "626c8805-bee3-4c4e-a1eb-9cfbf37a3d1b",
+            "sourceColumn": "CountryId",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "CountryName",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "debe6e08-6283-4a04-856d-64dcf317040d",
+            "sourceColumn": "CountryName",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DataSeriesId",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "cded1cf2-ba53-4dd6-babd-0711181e354e",
+            "sourceColumn": "DataSeriesId",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FootnoteSequenceId",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "85c037de-8751-4d04-b788-530ff7b4d649",
+            "sourceColumn": "FootnoteSequenceId",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "RELATED(DataSeries[Name])",
+            "isDataTypeInferred": true,
+            "lineageTag": "d6869640-1097-43ea-9eeb-e392fa1e31c4",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quantity",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "6265b169-e744-47a9-9210-5626d48ee81a",
+            "sourceColumn": "Quantity",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Trans Type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "IFERROR(",
+              "Mid('Values'[CommodityTransactionName]",
+              "\t,find(\" - \",'Values'[CommodityTransactionName])+2",
+              "\t,find(\" \",'Values'[CommodityTransactionName],find(\" - \",'Values'[CommodityTransactionName])+2)-2)",
+              "\t,\"NA\")"
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "153d8410-0bc3-4af7-858e-fdefd82cc684",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "TransactionCode",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f58fbb66-8070-4c89-b765-d4573cd4aa97",
+            "sourceColumn": "TransactionCode",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Unit",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c6e44bf2-0b1f-40a4-b6c2-f95964163523",
+            "sourceColumn": "Unit",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "bd7f6f5d-dd0c-4f4d-b45c-1294dcc3106c",
+            "sourceColumn": "Year",
+            "summarizeBy": "sum"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Name Hierarchy",
+            "levels": [
+              {
+                "name": "Name",
+                "column": "Name",
+                "lineageTag": "f8d2df00-4606-4b30-b367-2ff230e968df",
+                "ordinal": 0
+              }
+            ],
+            "lineageTag": "faa11c0f-bec4-4ff7-8067-7160d0f224b4"
+          }
+        ],
+        "lineageTag": "bdbd8f48-1f61-438b-b3ed-2336dcbf44ff",
+        "partitions": [
+          {
+            "name": "Values-b3a529cf-4026-491f-9389-b092b22c116c",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Marketplace.Subscriptions(),",
+                "    #\"https://api.datamarket.azure.com/Data.ashx/UnitedNations/Energy/v1/\" = Source{[ServiceUrl=\"https://api.datamarket.azure.com/Data.ashx/UnitedNations/Energy/v1/\"]}[Feeds],",
+                "    Values_table = #\"https://api.datamarket.azure.com/Data.ashx/UnitedNations/Energy/v1/\"{[Name=\"Values\",Signature=\"table\"]}[Data]",
+                "in",
+                "    Values_table"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
