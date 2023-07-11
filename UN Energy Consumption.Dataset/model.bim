@@ -543,6 +543,14 @@
           }
         ],
         "lineageTag": "bdbd8f48-1f61-438b-b3ed-2336dcbf44ff",
+        "measures": [
+          {
+            "name": "TestMeasure",
+            "expression": "999",
+            "formatString": "0",
+            "lineageTag": "85336029-ce84-45be-830f-6bf7b309f81a"
+          }
+        ],
         "partitions": [
           {
             "name": "Values-b3a529cf-4026-491f-9389-b092b22c116c",
